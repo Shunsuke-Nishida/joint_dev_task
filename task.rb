@@ -87,12 +87,20 @@ def q10
       puts "#{food}は、まぁまぁ好きです"
     end
   end
+
+  # 以下に書き換え可能
+  # foods.each do |food|
+  #   puts food.include?("うに")? "好物です" : "まぁまぁ好きです"
+  # end
 end
 
 def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
+  puts "ユーザーの趣味一覧"
+  sports.flatten!.uniq!
+  sports.each.with_index(1) { |sport,i| puts "No#{i} #{sport}" }
 
 end
 
@@ -100,7 +108,7 @@ def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
-
+  puts data[:user][:name]
 end
 
 def q13
@@ -108,14 +116,14 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-
+  p user_data.merge!(update_data)
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-
+  p data.keys
 end
 
 def q15
@@ -123,7 +131,8 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-
+  puts data1.has_key?(:age)? "OK" : "NG"
+  puts data2.has_key?(:age)? "OK" : "NG"
 end
 
 def q16
