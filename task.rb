@@ -144,12 +144,26 @@ def q16
   ]
 
   # 以下に回答を記載
-
+  users.each { |user| puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。" }
 end
 
 class UserQ17
   # 以下に回答を記載
+  def initialize(name:, age:, gender:, admin:)
+    @name = name
+    @age = age
+    @gender = gender
+    @admin = admin
+  end
 
+  def info
+    info_admin = @admin ? "有り" : "無し"
+
+    puts "名前：#{@name}"
+    puts "年齢：#{@age}"
+    puts "性別：#{@gender}"
+    puts "管理者権限：#{info_admin}"
+  end
 end
 
 def q17
@@ -164,7 +178,18 @@ end
 
 class UserQ18
   # 以下に回答を記載
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
 
+  def introduce
+    if @age.to_i >= 20
+      puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+    else
+      puts "はいさいまいど〜、#{@name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -172,14 +197,15 @@ def q18
   user1 = UserQ18.new(name: "あじー", age: 32)
   user2 = UserQ18.new(name: "ゆたぼん", age: 10)
 
-  puts user1.introduce
-  puts user2.introduce
+  user1.introduce
+  user2.introduce
 end
 
 class Item
   # 以下を修正して下さい
+  attr_accessor :name
 
-  def initialize(name)
+  def initialize(name:)
     @name = name
   end
 end
@@ -192,12 +218,48 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_accessor :name, :age
 
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  def initialize(name:, entry_fee:)
+    @entry_fee = entry_fee
+  end
 
+  def info_entry_fee(user)
+
+    # if user.age <= 120 && user.age >= 65
+    #   puts "#{user.name}さんの入場料は、#{@entry_fee[:senior]}円です。"
+    # elsif user.age <= 64 && user.age >= 13
+    #   puts "#{user.name}さんの入場料は、#{@entry_fee[:adult]}円です。"
+    # elsif user.age <= 12 && user.age >= 6
+    #   puts "#{user.name}さんの入場料は、#{@entry_fee[:children]}円です。"
+    # elsif user.age <= 5 && user.age >= 0
+    #   puts "#{user.name}さんの入場料は、#{@entry_fee[:infant]}円です。"
+    # end
+
+    # 一度if文で書いてみたところ、自分の中で整理できた気がします。
+    # わかりやすくなるかと思い、case文を()で囲いましたが問題ありませんでしょうか？
+    price = (
+    case user.age
+    when 0..5
+      @entry_fee[:infant]
+    when 6..12
+      @entry_fee[:children]
+    when 13..64
+      @entry_fee[:adult]
+    when 65..120
+      @entry_fee[:senior]
+    end
+    )
+    puts "#{user.name}さんの入場料金は #{price} 円です。"
+  end
 end
 
 
