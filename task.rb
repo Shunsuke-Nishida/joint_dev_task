@@ -149,20 +149,22 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  def initialize(name:, age:, gender:, admin:)
-    @name = name
-    @age = age
-    @gender = gender
-    @admin = admin
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+    @gender = params[:gender]
+    @admin = params[:admin]
   end
 
   def info
     info_admin = @admin ? "有り" : "無し"
 
-    puts "名前：#{@name}"
-    puts "年齢：#{@age}"
-    puts "性別：#{@gender}"
-    puts "管理者権限：#{info_admin}"
+    puts <<~EOS
+      名前：#{@name}
+      年齢：#{@age}
+      性別：#{@gender}
+      管理者権限：#{info_admin}
+    EOS
   end
 end
 
@@ -184,10 +186,10 @@ class UserQ18
   end
 
   def introduce
-    if @age.to_i >= 20
-      puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+    if @age >= 20
+      "こんにちは、#{@name}と申します。宜しくお願いいたします。"
     else
-      puts "はいさいまいど〜、#{@name}です！！！"
+      "はいさいまいど〜、#{@name}です！！！"
     end
   end
 end
@@ -197,13 +199,13 @@ def q18
   user1 = UserQ18.new(name: "あじー", age: 32)
   user2 = UserQ18.new(name: "ゆたぼん", age: 10)
 
-  user1.introduce
-  user2.introduce
+  puts user1.introduce
+  puts user2.introduce
 end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor :name
+  attr_reader :name
 
   def initialize(name:)
     @name = name
@@ -218,7 +220,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
 
   def initialize(name:, age:)
     @name = name
