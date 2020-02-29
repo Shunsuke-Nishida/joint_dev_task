@@ -249,7 +249,7 @@ class Zoo
 
     # 一度if文で書いてみたところ、自分の中で整理できた気がします。
     # わかりやすくなるかと思い、case文を()で囲いましたが問題ありませんでしょうか？
-    price = (
+    price =
     case user.age
     when 0..5
       @entry_fee[:infant]
@@ -260,7 +260,7 @@ class Zoo
     when 65..120
       @entry_fee[:senior]
     end
-    )
+    
     puts "#{user.name}さんの入場料金は #{price} 円です。"
   end
 end
